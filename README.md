@@ -184,6 +184,29 @@ older transitive version brought in by that driver's authentication dependency.
 
 ## Build and offline tests
 
+### Publish a single EXE (Windows x64)
+
+```powershell
+dotnet publish .\SQLConnectionDebugger\SQLConnectionDebugger.csproj --configuration Release --runtime win-x64
+```
+
+Distribute only `SQLConnectionDebugger\bin\Release\net10.0\win-x64\publish\SQLConnectionDebugger.exe`.
+The EXE bundles the managed dependencies, native libraries, debug symbols, and
+.NET runtime; the destination computer does not need .NET installed. Native
+libraries are extracted to the user's temporary directory when needed at runtime.
+Trimming is not enabled, preserving SqlClient and authentication behavior.
+
+```powershell
+.\SQLConnectionDebugger\bin\Release\net10.0\win-x64\publish\SQLConnectionDebugger.exe --help
+```
+
+Use `--runtime win-arm64` instead for Windows ARM64 (the output path changes
+accordingly). A normal `dotnet build` still generates intermediate DLLs and
+dependency files for development and tests; use the **publish** folder for the
+single-file application.
+
+### Development build and tests
+
 ```powershell
 dotnet build .\SQLConnectionDebugger.sln --configuration Release
 dotnet test .\SQLConnectionDebugger.Tests\SQLConnectionDebugger.Tests.csproj --configuration Release
