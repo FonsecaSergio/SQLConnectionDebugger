@@ -3,11 +3,58 @@
 A .NET 10 console utility for debugging TCP connections to Azure Synapse SQL,
 Azure SQL, and SQL Server configured for Microsoft Entra authentication.
 
-## Run
+## Open source and reuse
+
+SQL Connection Debugger is open-source software released under the
+[MIT License](LICENSE). Anyone can use, copy, modify, and redistribute this
+project's code, including for commercial purposes, provided the copyright and
+license notices are retained in copies or substantial portions of the code.
+You are welcome to fork the repository, adapt the tool to your needs, and share
+improvements through pull requests.
+
+The software is provided **"as is," without warranty**. Third-party dependencies
+remain subject to their respective licenses.
+
+## Download and run (recommended for customers)
+
+No source-code checkout, build tools, or .NET installation is required to use the
+published self-contained Windows executable.
+
+1. Open the [latest GitHub release](https://github.com/FonsecaSergio/SQLConnectionDebugger/releases/latest).
+2. Under **Assets**, download **SQLConnectionDebugger.zip** (not the **Source code**
+   archives). You can also use this
+   [direct download link](https://github.com/FonsecaSergio/SQLConnectionDebugger/releases/latest/download/SQLConnectionDebugger.zip).
+3. Right-click the downloaded ZIP and select **Extract All**. Keep the extracted
+   files in a local folder where you have write permission so the tool can save
+   its diagnostic log.
+4. Open PowerShell in the folder containing `SQLConnectionDebugger.exe` and run:
+
+   ```powershell
+   .\SQLConnectionDebugger.exe
+   ```
+
+To share the tool with a customer, send the **latest GitHub release** link above
+and ask them to download and extract the release asset. They do not need to build
+the project.
+
+Optional executable arguments:
+
+```powershell
+.\SQLConnectionDebugger.exe --log .\connection.log
+.\SQLConnectionDebugger.exe --no-probe
+.\SQLConnectionDebugger.exe --device-code
+.\SQLConnectionDebugger.exe --help
+```
+
+### Run from source (developers)
+
+With the .NET 10 SDK installed, run from the repository folder:
 
 ```powershell
 dotnet run --project .\SQLConnectionDebugger
 ```
+
+### Connection prompts (EXE or source)
 
 Enter:
 
